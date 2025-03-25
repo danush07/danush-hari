@@ -1,5 +1,66 @@
-<div>
-	
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (max-width: 750px) {
+  {%- if section.settings.enable_custom_width == true -%}
+    .custom-banner--wrapper {
+      width : {{ section.settings.custom_width}}px;
+    }
+  {%- endif -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} overflow-hidden">
+  <div class="custom-banner">
+    <div class="custom-banner--wrapper">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1500 | image_tag: width: section.settings.image.width }}
+      {%- else -%}
+        {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+    <div class="custom-banner--content">
+      <div class="content--inner color-{{ section.settings.color_scheme_content}}">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'text' -%}
+              <div class="custom-banner--text">
+                {{ block.settings.heading}}
+              </div>
+            {%- when 'description' -%}
+              <div class="custom-banner--description"> 
+                {{ block.settings.description}}
+              </div>
+            {%- when 'button' -%}
+            <div
+              class="banner__buttons"
+            >
+              {%- if block.settings.button_text != blank -%}
+                <a
+                  {% if block.settings.button_url == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_url }}"
+                  {% endif %}
+                  class="button"
+                >
+                  {{- block.settings.button_text -}}
+                  <span class="banner-button--arrow">
+                    {%- render 'custom-arrow' -%}
+                  </span>
+                </a>
+              {%- endif -%}
+            </div>
+            {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
 </div>
 {% schema %}
 {
@@ -12,10 +73,106 @@
       "label": "Banner image"
     },
     {
+      "type": "text",
+      "label": "Bottom text",
+      "id": "bottom_text",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+    },
+    {
+      "type": "checkbox",
+      "label": "Enable custom width",
+      "id": "enable_custom_width",
+      "default": false,
+      "info": "enable custom width on mobile"
+    },
+    {
+      "type": "range",
+      "id": "custom_width",
+      "label": "custom_width",
+      "min": 0,
+      "max": 1500,
+      "step": 100,
+      "default" : 700,
+      "info": "enable custom width on mobile"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_content",
+      "label": "Color scheme Content",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "name": "heading",
+      "type": "text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<p>The Gift Guide</p>"
+        }
+      ]
+    },
+    {
+      "name": "description",
+      "type": "description",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "label": "Button redirection",
+          "id": "button_url"
+        }
+      ]
     }
   ],
   "presets": [
