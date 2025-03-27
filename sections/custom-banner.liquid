@@ -1,7 +1,7 @@
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   @media screen and (max-width: 750px) {
   {%- if section.settings.enable_custom_width == true -%}
@@ -61,6 +61,11 @@
       </div>
     </div>
   </div>
+  {%- if section.settings.bottom_text != blank -%}    
+    <div class="custom-banner bottom-text">
+      {{ section.settings.bottom_text}}
+    </div>
+  {%- endif -%}
 </div>
 {% schema %}
 {

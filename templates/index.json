@@ -39,37 +39,82 @@
         "padding_bottom": 0
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "custom_shop_the_look_tWkc3N": {
+      "type": "custom-shop-the-look",
+      "blocks": {
+        "image_daJDhf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_826.png",
+            "product": "classic-varsity-top",
+            "vertical_alignement": 30,
+            "horizontal_alignement": 50
+          }
+        },
+        "image_eGNzqn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_823.png",
+            "product": "blue-silk-tuxedo",
+            "vertical_alignement": 50,
+            "horizontal_alignement": 85
+          }
+        },
+        "image_FWCMRz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_824.png",
+            "product": "chequered-red-shirt",
+            "vertical_alignement": 20,
+            "horizontal_alignement": 60
+          }
+        },
+        "image_qyHQih": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_822.png",
+            "product": "black-leather-bag",
+            "vertical_alignement": 55,
+            "horizontal_alignement": 55
+          }
+        },
+        "image_A6mqXE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_827.png",
+            "product": "dark-denim-top",
+            "vertical_alignement": 35,
+            "horizontal_alignement": 70
+          }
+        },
+        "image_WNR8qC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/image_825.png",
+            "product": "classic-leather-jacket",
+            "vertical_alignement": 15,
+            "horizontal_alignement": 70
+          }
+        }
+      },
+      "block_order": [
+        "image_daJDhf",
+        "image_eGNzqn",
+        "image_FWCMRz",
+        "image_qyHQih",
+        "image_A6mqXE",
+        "image_WNR8qC"
+      ],
       "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
+        "title": "Tisso vison in the wild",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
+        "padding_top": 36,
         "padding_bottom": 36
       }
     }
   },
   "order": [
     "custom_banner_je86kT",
-    "featured_collection"
+    "custom_shop_the_look_tWkc3N"
   ]
 }

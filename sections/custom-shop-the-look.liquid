@@ -1,0 +1,156 @@
+<script src="{{"lookbook.js" |  asset_url}}" defer></script>
+{%- style -%}
+   .section-{{ section.id }}-padding {
+     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+   }
+   @media screen and (min-width: 750px) {
+     .section-{{ section.id }}-padding {
+       padding-top: {{ section.settings.padding_top  }}px;
+       padding-bottom: {{ section.settings.padding_bottom  }}px;
+     }
+   }
+  {%- for block in section.blocks -%}
+  	.lookbook-dot--{{ block.id}}{
+  		top : {{ block.settings.vertical_alignement}}%;
+  		left : {{ block.settings.horizontal_alignement}}%;
+  	}
+  {%- endfor -%}
+{%- endstyle -%}
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }} shop-the-look">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="shop-the-look--title">{{ section.settings.title }}</div>
+    {%- endif -%}
+    <div class="grid grid--3-col-desktop grid--2-col">
+      {%- for block in section.blocks -%}
+        <div class="lookbook--image grid__item">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1500 | image_tag: width: block.settings.image.width }}
+          {%- else -%}
+            {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+          {%- if block.settings.product != blank -%}
+            {%- assign product = block.settings.product -%}
+            <lookbook-popup>
+              <div class="lookbook--dot lookbook-dot--{{ block.id}}">
+                {%- render 'lookbook-dot' -%}
+              </div>
+              <div id="lookbookPopupModal" class="lookbook-popup-modal hidden">
+                <div class="lookbook-overlay"></div>
+                <div class="modal-content">
+                  <span class="close" id="modalClose">&times;</span>
+                  <div class="modal-content--inner">
+                    <div class="lookbook-popup--media">
+                      {{
+                        product.featured_image
+                        | image_url: width: 1500
+                        | image_tag: width: product.featured_image.width
+                      }}
+                    </div>
+                    <div class="lookbook-popup--content">
+                      <p class="lookbook-popup--title">
+                        {{ product.title }}
+                      </p>
+                      <p class="lookbook-popup--price">
+                        {{ product.price | money_with_currency}}
+                      </p>
+                        {{ product.description }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </lookbook-popup>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Custom shop the look",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Tisso vison in the wild"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "name": "lookbook",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "add the product here to map with the image"
+        },
+        {
+          "type": "range",
+          "label": "Vertical Alignment",
+          "id": "vertical_alignement",
+          "max": 100,
+          "min": 0,
+          "step": 5,
+          "default": 10
+        },
+        {
+          "type": "range",
+          "label": "Horizontal Alignment",
+          "id": "horizontal_alignement",
+          "max": 100,
+          "min": 0,
+          "step": 5,
+          "default": 10
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom shop the look",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
