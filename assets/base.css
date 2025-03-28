@@ -710,16 +710,6 @@ summary::-webkit-details-marker {
   Focus ring - default (with offset)
 */
 
-*:focus {
-  outline: 0;
-  box-shadow: none;
-}
-
-*:focus-visible {
-  outline: var(--focused-base-outline);
-  outline-offset: var(--focused-base-outline-offset);
-  box-shadow: var(--focused-base-box-shadow);
-}
 
 /* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
 .focused {
@@ -1632,8 +1622,6 @@ details[open] > .share-button__fallback {
 }
 
 .field:hover.field:after,
-.select:hover.select:after,
-.select__select:hover.select__select:after,
 .customer .field:hover.field:after,
 .customer select:hover.select:after,
 .localization-form__select:hover.localization-form__select:after {
@@ -1644,7 +1632,6 @@ details[open] > .share-button__fallback {
 }
 
 .field__input:focus-visible,
-.select__select:focus-visible,
 .customer .field input:focus-visible,
 .customer select:focus-visible,
 .localization-form__select:focus-visible.localization-form__select:after {
@@ -1654,7 +1641,6 @@ details[open] > .share-button__fallback {
 }
 
 .field__input:focus,
-.select__select:focus,
 .customer .field input:focus,
 .customer select:focus,
 .localization-form__select:focus.localization-form__select:after {
@@ -3154,7 +3140,6 @@ details-disclosure > details {
   }
 
   .field__input:focus,
-  .select__select:focus,
   .customer .field input:focus,
   .customer select:focus,
   .localization-form__select:focus.localization-form__select:after {
@@ -3722,6 +3707,61 @@ img {
   align-items: center;
   z-index: 9999;
   }
+.lookbook--atc{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 1rem;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+}
+.lookbook--atc span{
+  width: 271px;
+  cursor: pointer;
+  height: 45px;
+  background: #000000;
+  color: white;
+  gap: 3rem;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.lookbook-color--wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lookbook--preview{
+  height: 4rem;
+  width: .5rem;
+  border: 1px solid black;
+}
+.lookbook--color{
+  flex: 1;
+  border: 1px solid black;
+  align-items: center;
+  display: flex;
+  position: relative;
+  height: 4rem;
+}
+.lookbook-radio:checked + label {
+  background: black;
+  color: white;
+}
+.lookbook--atc svg path{
+  fill: white;
+}
+.lookbook--color label{
+  padding: 0 0 0 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
 .lookbook-popup-modal .modal-content {
   width: 311px;
   height: 447px;
@@ -3761,6 +3801,7 @@ img {
 }
 .modal-content--inner{
   padding: 36px 17px;
+  padding-bottom: 0px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -3779,6 +3820,74 @@ img {
   letter-spacing: 0px;
   margin: 1rem 0;
 }
+.lookbook--variant{
+  font-family: Jost;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: 0%;
+}
+.lookbook-variant--wrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 20px 17px 0;
+}
+.lookbook-variant--wrapper select{
+  height: 40px;
+  border: 1px solid black;
+}
+.lookbook-variant--wrapper select:focus{
+  outline: none;
+}
+.lookbook-variant--wrapper input[type=radio]{
+    position: absolute;
+    inset: 0; 
+    opacity: 0;
+    cursor: pointer;
+}
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  border: 1px solid #000000;
+  font-size: 16px;
+  cursor: pointer;
+  padding-right: 40px; 
+}
+
+.custom-dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 0px; 
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 4rem; 
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-right: 0px;
+  transition: transform 0.5s ease;
+}
+
+.custom-dropdown-icon svg {
+  width: 12px;
+  height: 6px;
+}
+.custom-select-wrapper:has(.custom-select:focus) .custom-dropdown-icon svg{
+  transform: translateY(-50%) rotate(180deg);
+}
+
 @media screen and (max-width: 749px) {
   .custom-banner--text * {
     font-size: 3rem;

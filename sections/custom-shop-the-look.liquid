@@ -53,10 +53,96 @@
                         {{ product.title }}
                       </p>
                       <p class="lookbook-popup--price">
-                        {{ product.price | money_with_currency}}
+                        {{ product.price | money_with_currency }}
                       </p>
-                        {{ product.description }}
+                      {{ product.description }}
                     </div>
+                  </div>
+                  <div class="lookbook-variant--wrapper">
+                    {%- for option in product.options_with_values -%}
+                      <label
+                        class="lookbook--variant"
+                        {% if option.name == 'Size' %}
+                          hidden
+                        {% endif %}
+                      >
+                        {{ option.name }}
+                      </label>
+                      <div class="lookbook-color--wrapper">
+                        {%- for value in option.values -%}
+                          <div class="lookbook--color {% if option.name == 'Size' %} hidden {% endif %}">
+                            <span class="lookbook--preview" style="background:{{ value | handleize }}"></span>
+                            <input
+                              type="radio"
+                              id="option_{{ value | handle }}"
+                              name="option_{{ option.name | handle }}"
+                              value="{{ value }}"
+                              class="lookbook-radio"
+                            >
+                            <label for="option_{{ value | handle }}" class="lookbook-label">
+                              {{ value }}
+                            </label>
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                  <div class="lookbook-variant--wrapper">
+                    {%- for option in product.options_with_values -%}
+                      <label
+                        class="lookbook--variant"
+                        {% if option.name == 'Color' %}
+                          hidden
+                        {% endif %}
+                      >
+                        {{ option.name }}
+                      </label>
+                      <div class="custom-select-wrapper">
+                        <select
+                          id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                          {% if option.name == 'Color' %}
+                            hidden
+                          {% endif %}
+                          class="select__select custom-select"
+                          name="options[{{ option.name | escape }}]"
+                        >
+                          {%- for value in option.values -%}
+                            {%- liquid
+                              assign option_disabled = true
+                              if value.available
+                                assign option_disabled = false
+                              endif
+                            -%}
+                            <option
+                              value="{{ value | escape }}"
+                              {% if value.selected %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {% if option_disabled -%}
+                                {{- 'products.product.value_unavailable' | t: option_value: value -}}
+                              {%- else -%}
+                                {{- value -}}
+                              {%- endif %}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        <div class="custom-dropdown-icon {% if option.name == 'Color' %}
+                            hidden
+                          {% endif %}" {% if option.name == 'Color' %}
+                            hidden
+                          {% endif %}>
+                          {%- render 'custom-dropdown' -%}
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+
+                  <div class="lookbook--atc">
+                    <span>
+                      ADD TO CART
+                      {%- render 'custom-arrow' -%}
+                    </span>
                   </div>
                 </div>
               </div>
