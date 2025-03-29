@@ -2342,15 +2342,37 @@ input[type='checkbox'] {
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
 }
-.button-redirection--text{
+body header .button-redirection--text{
   width: 207px;
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   background: yellow;
   height: 44px;
   gap: 2rem;
   letter-spacing: 0px;
+  border: 0px;
+}
+body header .button-redirection--text span{
+  border: 0px;
+  color: rgb(0, 0, 0);
+}
+body header .button-redirection--text svg path{
+  fill: #000000;
+}
+body header .button-redirection--text svg {
+  margin-left: 2rem;
+}
+body header .button-redirection--text:before {
+  background-color: #000000;
+  transition: .3s ease-out;
+}
+body header .button-redirection--text:hover span{
+  color: white;
+}
+body header .button-redirection--text:hover svg,body header .button-redirection--text:hover svg path {
+  fill: white;
 }
 .header-announcement{
   letter-spacing: 0px;
@@ -3662,10 +3684,11 @@ img {
 }
 .custom-banner--content .content--inner{
   max-width: 500px;
+  height: 350px;
   margin: 4rem;
   padding: 2rem;
 }
-.banner-button--arrow{
+.custom-banner--buttons svg{
   margin-left: 1rem;
 }
 .banner-button--arrow path{
@@ -3716,18 +3739,7 @@ img {
   justify-content: center;
   width: 100%;
 }
-.lookbook--atc span{
-  width: 271px;
-  cursor: pointer;
-  height: 45px;
-  background: #000000;
-  color: white;
-  gap: 3rem;
-  align-items: center;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
+
 .lookbook-color--wrapper{
   display: flex;
   justify-content: center;
@@ -3750,8 +3762,11 @@ img {
   background: black;
   color: white;
 }
+.lookbook--atc svg{
+  margin-left: 1rem;
+}
 .lookbook--atc svg path{
-  fill: white;
+  fill: rgb(255, 255, 255);
 }
 .lookbook--color label{
   padding: 0 0 0 1rem;
@@ -3829,7 +3844,7 @@ img {
 }
 .lookbook-variant--wrapper{
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   padding: 20px 17px 0;
 }
 .lookbook-variant--wrapper select{
@@ -3840,10 +3855,10 @@ img {
   outline: none;
 }
 .lookbook-variant--wrapper input[type=radio]{
-    position: absolute;
-    inset: 0; 
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  inset: 0; 
+  opacity: 0;
+  cursor: pointer;
 }
 .custom-select-wrapper {
   position: relative;
@@ -3886,6 +3901,84 @@ img {
 }
 .custom-select-wrapper:has(.custom-select:focus) .custom-dropdown-icon svg{
   transform: translateY(-50%) rotate(180deg);
+}
+.lookbook-error{
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+.custom-banner--buttons{
+  text-decoration: none;
+  width: 220px;
+}
+
+.btn.hover-slide-right::before {
+  top: 0; bottom: 0; left: 0; 
+  height: 100%; width: 0%;
+}
+.btn.hover-slide-right:hover::before {
+  width: 100%;
+}
+.header-redirection ::before, 
+.lookbook-popup-modal ::after,
+.lookbook-popup-modal ::before,
+.header-redirection ::after,
+.banner__buttons ::after,
+.banner__buttons ::before{
+  position: absolute;
+  content: "";
+}
+
+
+.btn-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px auto 35px;
+}
+.btn {
+  position: absolute;
+  display: flex;
+  width: auto;
+  height: auto;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+  margin: 0px 17px 0px;
+  min-width: 150px;
+  height: 45px;
+  width: 277px;
+
+}
+.btn span {         
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  top: 0; left: 0;
+  width: 100%;
+  transition: 0.3s;
+  height: 45px;
+}
+
+.btn-2::before {
+  background-color: rgb(255, 255, 255);
+  transition: 0.3s ease-out;
+}
+.btn-2 span {
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(28, 31, 30);
+  transition: 0.2s;
+}  
+.btn-2 span:hover {
+  color: rgb(0, 0, 0);
+  transition: 0.2s 0.1s;
+}
+.btn-2 span:hover svg path{
+  fill: rgb(0, 0, 0);;
 }
 
 @media screen and (max-width: 749px) {

@@ -234,9 +234,11 @@
       {%- else -%}
         <div>
       {%- endif -%}
-      <span class="button-redirection--text">
-        {{ section.settings.button_redirection_text }}
-        {%- render 'custom-arrow' -%}
+      <span class="button-redirection--text btn btn-2 hover-slide-right">
+        <span>
+          {{ section.settings.button_redirection_text }}
+          {%- render 'custom-arrow' -%}
+        </span>
       </span>
         {%- if section.settings.button_redirection_url != blank -%}
           </a>

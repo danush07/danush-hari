@@ -30,40 +30,41 @@
           {%- case block.type -%}
             {%- when 'text' -%}
               <div class="custom-banner--text">
-                {{ block.settings.heading}}
+                {{ block.settings.heading }}
               </div>
             {%- when 'description' -%}
-              <div class="custom-banner--description"> 
-                {{ block.settings.description}}
+              <div class="custom-banner--description">
+                {{ block.settings.description }}
               </div>
             {%- when 'button' -%}
-            <div
-              class="banner__buttons"
-            >
-              {%- if block.settings.button_text != blank -%}
-                <a
-                  {% if block.settings.button_url == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.button_url }}"
-                  {% endif %}
-                  class="button"
-                >
-                  {{- block.settings.button_text -}}
-                  <span class="banner-button--arrow">
-                    {%- render 'custom-arrow' -%}
-                  </span>
-                </a>
-              {%- endif -%}
-            </div>
-            {%- endcase -%}
+              <div
+                class="banner__buttons"
+              >
+                {%- if block.settings.button_text != blank -%}
+                  <a
+                    {% if block.settings.button_url == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_url }}"
+                    {% endif %}
+                    class="custom-banner--buttons banner-button--arrow btn btn-2 hover-slide-right"
+                  >
+                    <span>
+                      {{- block.settings.button_text -}}
+
+                      {%- render 'custom-arrow' -%}
+                    </span>
+                  </a>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
         {%- endfor -%}
       </div>
     </div>
   </div>
-  {%- if section.settings.bottom_text != blank -%}    
+  {%- if section.settings.bottom_text != blank -%}
     <div class="custom-banner bottom-text">
-      {{ section.settings.bottom_text}}
+      {{ section.settings.bottom_text }}
     </div>
   {%- endif -%}
 </div>
@@ -97,7 +98,7 @@
       "min": 0,
       "max": 1500,
       "step": 100,
-      "default" : 700,
+      "default": 700,
       "info": "enable custom width on mobile"
     },
     {
