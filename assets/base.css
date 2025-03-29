@@ -4002,7 +4002,13 @@ img {
   .custom-banner--content{
     padding: 4rem;
   }
-  .banner__buttons{
-    padding-bottom: 2rem;
+  .banner__buttons {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+  }
+  .custom-banner--content .content--inner {
+    height: 220px;
   }
 }
