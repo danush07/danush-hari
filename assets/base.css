@@ -2595,8 +2595,6 @@ body header .button-redirection--text:hover svg,body header .button-redirection-
 }
 
 .header__icon .icon {
-  height: 2rem;
-  width: 2rem;
   fill: none;
   vertical-align: middle;
 }
